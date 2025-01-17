@@ -3,8 +3,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const FormData = require("./FormData");   
-const http = require("http");     
+const FormData = require("./FormData"); 
+const http = require("http"); 
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ console.log("PORT:", process.env.PORT);
 const allowedOrigins = [
   "http://localhost:5173",
   "https://sportsform.azurewebsites.net",
-  "https://mango-sea-0d38e9600.4.azurestaticapps.net/"
+  "https://mango-sea-0d38e9600.4.azurestaticapps.net"
 ];
 
 app.use(cors({

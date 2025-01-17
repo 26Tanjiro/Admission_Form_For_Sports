@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://sportsform.azurewebsites.net",
+        target: "http://localhost:8080", 
         changeOrigin: true,
       },
     },
