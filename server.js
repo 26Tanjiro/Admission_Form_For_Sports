@@ -87,7 +87,7 @@ const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
 
-/
+
 process.on('SIGINT', async () => {
     await mongoose.connection.close();
     console.log("MongoDB connection closed");
