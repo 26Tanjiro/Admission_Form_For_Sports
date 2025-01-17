@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - SportsForm
+name: Build and deploy Node.js app to Azure Web App - sportsform
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-      
+    
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
@@ -57,15 +57,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_52DF3B6505224EE394E687329F8F19E8 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_1B7907126BA34D3F9F153876DFD87469 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8C6EB0B0C6E444C6B3733864EA3748FD }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_665459E6116C4FB5A8667396A8683536 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_847541155D7E48ABB357827C7334D8DD }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A59598F8F3344A199423BC99C96F45A1 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'SportsForm'
+          app-name: 'sportsform'
           slot-name: 'Production'
           package: .
           
