@@ -29,7 +29,7 @@ const SportsAdmission = () => {
   useEffect(() => {
     const fetchFormData = async () => {
       try {
-        const response = await axios.get("http://localhost:9000/api/formdata");
+        const response = await axios.get("/api/formdata");
         if (response.data.length > 0) {
           const data = response.data[0];
           setFormData(data);
@@ -39,7 +39,7 @@ const SportsAdmission = () => {
         console.error("Error fetching form data:", error);
       }
     };
-  
+
     fetchFormData();
   }, []);
 
@@ -61,10 +61,10 @@ const SportsAdmission = () => {
 
     try {
       if (formId) {
-        await axios.put(`http://localhost:9000/api/formdata/${formId}`, formData);
+        await axios.put(`/api/formdata/${formId}`, formData);
         console.log("Form Data Updated:", formData);
       } else {
-        const response = await axios.post("http://localhost:9000/api/formdata", formData);
+        const response = await axios.post("/api/formdata", formData);
         setFormId(response.data._id);
         console.log("Form Data Submitted:", formData);
       }
