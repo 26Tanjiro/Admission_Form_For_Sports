@@ -3,13 +3,14 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const FormData = require("./FormData"); 
+const FormData = require("./FormData");   
+const http = require("http");     
 
 dotenv.config();
 
 const app = express();
 
-console.log("MONGODB_URI:", process.env.MONGODB_URI);
+console.log("MONGO_URI:", process.env.MONGO_URI);
 console.log("PORT:", process.env.PORT);
 
 const allowedOrigins = [
@@ -68,7 +69,7 @@ app.get("/api/formdata", async (req, res) => {
 });
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((error) => {
     console.error("MongoDB Connection Error:", error.message);
