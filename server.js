@@ -5,11 +5,14 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const FormData = require("./FormData"); 
 const http = require('http');
-   
+const morgan = require('morgan'); // Logging library
 
 dotenv.config();
 
 const app = express();
+
+// Middleware for logging requests
+app.use(morgan('combined')); // Use 'tiny' for less verbose logging
 
 console.log("MONGO_URI:", process.env.MONGO_URI);
 console.log("PORT:", process.env.PORT);
@@ -66,10 +69,11 @@ app.get("/api/formdata", async (req, res) => {
     res.json(formData);
   } catch (error) {
     console.error("Error fetching form data:", error);
-    res.status(500).json({ message: "Error fetching form data" });
+    res.status(500).json({ message: "Error fetching form data", error: error.message });
   }
 });
 
+// MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
@@ -81,6 +85,13 @@ mongoose
 const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  console.log("MongoDB connection closed");
+  process.exit(0);
+});
 
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
