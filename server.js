@@ -15,7 +15,8 @@ console.log("PORT:", process.env.PORT);
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://sportsform.azurewebsites.net"
+  "https://sportsform.azurewebsites.net",
+  "https://mango-sea-0d38e9600.4.azurestaticapps.net/"
 ];
 
 app.use(cors({
