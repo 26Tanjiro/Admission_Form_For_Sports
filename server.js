@@ -15,13 +15,14 @@ const app = express();
 app.use(morgan("combined"));
 
 
-
+console.log("MONGO_URI:", "sucess");
 console.log("PORT:", process.env.PORT);
+console.log("Origin:", process.allowedOrigins);
 
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://sportsform.azurewebsites.net/api/formdata",
+    "https://sportsform.azurewebsites.net/formdata",
     "https://mango-sea-0d38e9600.4.azurestaticapps.net",
     ];
 
@@ -102,7 +103,7 @@ const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
 
-server.listen(port,() => {
+server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
