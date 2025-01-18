@@ -21,27 +21,15 @@ console.log("Origin:", process.allowedOrigins);
 
 
 const allowedOrigins = [
-    "http://localhost:5173",
+    "http://localhost:5174",
     "https://sportsform.azurewebsites.net/formdata",
     "https://mango-sea-0d38e9600.4.azurestaticapps.net",
     ];
 
 
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            console.log("Request Origin:", origin); 
-            if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-                callback(null, true);
-            } else {
-                callback(new Error("Not allowed by CORS"));
-            }
-        },
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
-        credentials: false, 
-    })
-);
+    app.use(cors({ origin: "*" }));
+
+    
 
 // app.use(cors({origin: [allowedOrigins], credentials: true, methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Origin"]}));
 
