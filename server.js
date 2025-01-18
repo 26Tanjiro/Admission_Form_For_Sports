@@ -15,15 +15,15 @@ const app = express();
 app.use(morgan("combined"));
 
 
-console.log("MONGO_URI:", process.env.MONGO_URI);
+
 console.log("PORT:", process.env.PORT);
 
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://sportsform.azurewebsites.net",
+    "https://sportsform.azurewebsites.net/api/formdata",
     "https://mango-sea-0d38e9600.4.azurestaticapps.net",
-];
+    ];
 
 
 app.use(
@@ -41,6 +41,8 @@ app.use(
         credentials: false, 
     })
 );
+
+// app.use(cors({origin: [allowedOrigins], credentials: true, methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Origin"]}));
 
 app.use(bodyParser.json());
 
@@ -100,7 +102,7 @@ const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
 
-server.listen(port, "0.0.0.0", () => {
+server.listen(port,() => {
     console.log(`Server running on port ${port}`);
 });
 

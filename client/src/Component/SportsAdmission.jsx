@@ -29,7 +29,7 @@ const SportsAdmission = () => {
   useEffect(() => {
     const fetchFormData = async () => {
       try {
-        const response = await axios.get("https://sportsform.azurewebsites.net/api/formdata");
+        const response = await axios.get("https://sportsform.azurewebsites.net/formdata");
         if (response.data.length > 0) {
           const data = response.data[0];
           setFormData(data);
